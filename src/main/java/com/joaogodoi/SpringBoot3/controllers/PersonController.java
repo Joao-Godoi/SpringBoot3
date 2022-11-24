@@ -1,6 +1,6 @@
 package com.joaogodoi.SpringBoot3.controllers;
 
-import com.joaogodoi.SpringBoot3.models.Person;
+import com.joaogodoi.SpringBoot3.data.vo.v1.PersonVO;
 import com.joaogodoi.SpringBoot3.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,22 +17,22 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable(value = "id") Long id) throws Exception {
+    public PersonVO findById(@PathVariable(value = "id") Long id) throws Exception {
         return personService.findById(id);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findAll() throws Exception {
+    public List<PersonVO> findAll() throws Exception {
         return personService.findAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person create(@RequestBody Person person) throws Exception {
+    public PersonVO create(@RequestBody PersonVO person) throws Exception {
         return personService.create(person);
     }
 
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person) throws Exception {
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PersonVO update(@RequestBody PersonVO person) throws Exception {
         return personService.update(person);
     }
 
