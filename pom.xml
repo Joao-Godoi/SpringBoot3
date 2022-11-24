@@ -15,7 +15,7 @@
     <description>API using Spring Boot 3</description>
     <properties>
         <java.version>17</java.version>
-        <dozer.version>6.5.2</dozer.version>
+        <dozer.version>6.4.0</dozer.version>
     </properties>
     <dependencies>
         <dependency>
