@@ -1,4 +1,4 @@
-package com.joaogodoi.SpringBoot3.exceptions.handler;
+package com.joaogodoi.SpringBoot3.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

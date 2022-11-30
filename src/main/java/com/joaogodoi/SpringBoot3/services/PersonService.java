@@ -2,7 +2,8 @@ package com.joaogodoi.SpringBoot3.services;
 
 import com.joaogodoi.SpringBoot3.controllers.PersonController;
 import com.joaogodoi.SpringBoot3.data.vo.v1.PersonVO;
-import com.joaogodoi.SpringBoot3.exceptions.handler.ResourceNotFoundException;
+import com.joaogodoi.SpringBoot3.exceptions.RequiredObjectIsNullException;
+import com.joaogodoi.SpringBoot3.exceptions.ResourceNotFoundException;
 import com.joaogodoi.SpringBoot3.mapper.DozerMapper;
 import com.joaogodoi.SpringBoot3.models.Person;
 import com.joaogodoi.SpringBoot3.repositories.PersonRepository;
@@ -39,6 +40,7 @@ public class PersonService {
     }
 
     public PersonVO create(PersonVO personVO) {
+        if (personVO == null) throw new RequiredObjectIsNullException();
         logger.info("Creating a new person...");
         var person = DozerMapper.parseObject(personVO, Person.class);
         var newPersonVO = DozerMapper.parseObject(personRepository.save(person), PersonVO.class);
@@ -47,6 +49,7 @@ public class PersonService {
     }
 
     public PersonVO update(PersonVO personVO) {
+        if (personVO == null) throw new RequiredObjectIsNullException();
         logger.info("Updating a person...");
         var entity = personRepository.findById(personVO.getKey()).orElseThrow(() -> new ResourceNotFoundException("No person found for id: " + personVO.getKey()));
         entity.setFirstName(personVO.getFirstName());
